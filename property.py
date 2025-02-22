@@ -37,6 +37,7 @@ class Property:
     def getQuality(self): # returns Quality
         return self.propertyValue - self.landValue
     def getDistance(self): # returns distance to SU
+        #uses halvorsines formula
         SUcd = (radians(SUlat),radians(SUlong))
         objcd = (radians(self.objLat), radians(self.objLong))
         a = sin((SUcd[0]-objcd[0])/2)**2 + cos(objcd[0]) * cos(SUcd[0]) * sin((SUcd[1]-objcd[1])/2)**2
@@ -44,7 +45,7 @@ class Property:
         distance = 3963 * c
         return round(distance,2)
 
-    def __str__(self):
+    def __str__(self): string representation
         return "Property: " + self.name + " | Distance from SU: " + str(self.getDistance()) + "mi | Land Value: $" + str(self.landValue) + " | Property Value: $" + str(self.propertyValue) + " | Quality $" + str(self.getQuality()) + " | Latitude "+ str(self.objLat) + " | Longitude "+ str(self.objLong)
 
     def __repr__(self):
