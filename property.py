@@ -1,17 +1,12 @@
-from math import*
-from pickletools import long1
-
-
-def lattomi(x):
-    return m.cos(x) * 69.17
+from math import *
 
 class Property:
     # constructor asks for, in order
     # (name of property, land value, propertyValue, latitude, longitude)
-    def __init__(self,name,landValue,propertyValue,objLat, objLong):
+    def __init__(self,address,landValue,propertyValue,objLat, objLong):
         self.landValue = landValue
         self.propertyValue = propertyValue
-        self.name = name
+        self.address = address
         self.objLong = objLong
         self.objLat = objLat
 
@@ -21,11 +16,9 @@ class Property:
     global SUlat
     SUlat = 43.03465908
 
-
-
     # get funcs
-    def getName(self): # returns name of property
-        return self.name
+    def getAddress(self): # returns name of property
+        return self.address
     def getLandValue(self): # returns land value
         return self.landValue
     def getPropertyValue(self): # returns property value
@@ -45,10 +38,10 @@ class Property:
         distance = 3963 * c
         return round(distance,2)
 
-    def __str__(self): string representation
-        return "Property: " + self.name + " | Distance from SU: " + str(self.getDistance()) + "mi | Land Value: $" + str(self.landValue) + " | Property Value: $" + str(self.propertyValue) + " | Quality $" + str(self.getQuality()) + " | Latitude "+ str(self.objLat) + " | Longitude "+ str(self.objLong)
+    def __str__(self): # string representation
+        return "Property: " + self.address + " | Distance from SU: " + str(self.getDistance()) + "mi | Land Value: $" + str(self.landValue) + " | Property Value: $" + str(self.propertyValue) + " | Quality $" + str(self.getQuality()) + " | Latitude "+ str(self.objLat) + " | Longitude "+ str(self.objLong)
 
     def __repr__(self):
-        return "(Property " + self.name + " | Distance from SU " + str(self.getDistance()) + " | Land Value: $" + str(
+        return "(Property " + self.address + " | Distance from SU " + str(self.getDistance()) + " | Land Value: $" + str(
             self.landValue) + " | Property Value: $" + str(self.propertyValue) + " | Quality $" + str(
             self.getQuality()) + " | Latitude " + str(self.objLat) + " | Longitude " + str(self.objLong) +")"
