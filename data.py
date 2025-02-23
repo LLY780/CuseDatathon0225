@@ -26,6 +26,4 @@ cityLongitude = list(cityFile["Lng"])
 parcelPropertyVal = [parcelTotalVal[i]-parcelLandVal[i] for i in range(len(parcelTotalVal))]
 
 # list of all parcels using Property class
-properties = {}
-for i in range(len(parcelTotalVal)):
-    properties[parcelAddress[i]] = Property(parcelAddress[i],parcelLandVal[i],parcelPropertyVal[i],parcelLatitude[i],parcelLongitude[i])
+properties = [Property(parcelAddress[i],parcelLandVal[i],parcelPropertyVal[i],parcelLatitude[i],parcelLongitude[i]) for i in range(len(parcelTotalVal))]
