@@ -39,7 +39,7 @@ class Property:
         return round(distance,2)
 
     def __str__(self): # string representation
-        return "Property: " + self.address + " | Distance from SU: " + str(self.getDistance()) + "mi | Land Value: $" + str(self.landValue) + " | Property Value: $" + str(self.propertyValue) + " | Quality $" + str(self.getQuality()) + " | Latitude "+ str(self.objLat) + " | Longitude "+ str(self.objLong)
+        return "Property: " + self.address + " | Total Value: " + str(self.propertyValue + self.landValue)
 
     def __repr__(self):
         return "(Property " + self.address + " | Distance from SU " + str(self.getDistance()) + " | Land Value: $" + str(
