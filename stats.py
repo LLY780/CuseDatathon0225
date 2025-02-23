@@ -72,7 +72,10 @@ def meanValuerad(radius,prop):
     ulst = proplstrad(radius, prop)
     psum = 0
     for i in range(len(ulst)):
-        psum += ulst[i].getPropertyValue()
+        if ulst[i].getPropertyValue() == 0:
+            continue
+        else:
+            psum += ulst[i].getPropertyValue()
     return round(psum / len(ulst),2)
 
 def standarddev(lst):
@@ -85,14 +88,18 @@ def standarddevrad(radius, prop):
     plst = proplstrad(radius, prop)
     ulst = []
     for i in range(len(plst)):
-        ulst.append(plst[i].getPropertyValue())
+        if plst[i].getPropertyValue() == 0:
+            continue
+        else:
+            ulst.append(plst[i].getPropertyValue())
     topstuff = 0
+    u = meanValue(ulst)
     for i in range(len(ulst)):
-        topstuff += (ulst[i] - meanValue(ulst))**2
-    return sqrt(topstuff/len(ulst))
+        topstuff += (ulst[i] - u)**2
+    return round(sqrt(topstuff/len(ulst)),2)
 
 
-#print(meanValue(proplstrad(1.5, searchProp("940 COMSTOCK AVE & COLVIN ST"))))
-print(meanValuerad(1.5,searchProp("940 COMSTOCK AVE & COLVIN ST")))
+#print(standarddevrad(1.5,searchProp("940 COMSTOCK AVE & COLVIN ST")))
+#print(meanValuerad(1.5,searchProp("940 COMSTOCK AVE & COLVIN ST")))
 #print(propdensityrad(1.5,searchProp("940 COMSTOCK AVE & COLVIN ST")))
 #print(proplstrad(1.5,searchProp("940 COMSTOCK AVE & COLVIN ST")))
