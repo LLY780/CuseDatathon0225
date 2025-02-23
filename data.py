@@ -1,27 +1,30 @@
-from imports import pd
+from imports import pd, gpd
 from Property import Property
 
-parcelFile = pd.read_csv("Syracuse_Parcel_Map_(Q4_2024).csv") # filter out blank values
-cityFile = pd.read_csv("SYRCityline_Requests_(2021-Present).csv")
+parceldf = pd.read_csv("Syracuse_Parcel_Map_(Q4_2024).csv") # filter out blank values
+citydf = pd.read_csv("SYRCityline_Requests_(2021-Present).csv")
+parcelgdf = gpd.read_file("Syracuse_Parcel_Map_(Q4_2024).geojson")
+citygdf = gpd.read_file("SYRCityline_Requests_(2021-Present).geojson")
 
-parcelLength = len(parcelFile)
+parcelLength = len(parceldf)
+cityLength = len(citydf)
 
-# parcelFile columns
-parcelAddress = list(parcelFile["FullAddres"])
-parcelAdditionalAddress = list(parcelFile["Add2_OwnSt"])
-parcelLandVal = list(parcelFile["land_av"])
-parcelTotalVal = list(parcelFile["total_av"])
-parcelOwner = list(parcelFile["Owner"])
-parcelAcre = list(parcelFile["SHAPE_Area"])
-parcelLatitude = list(parcelFile["LAT"])
-parcelLongitude = list(parcelFile["LONG"])
-SUParcel = parcelFile.iloc[18182]
+# parceldf columns
+parcelAddress = list(parceldf["FullAddres"])
+parcelAdditionalAddress = list(parceldf["Add2_OwnSt"])
+parcelLandVal = list(parceldf["land_av"])
+parcelTotalVal = list(parceldf["total_av"])
+parcelOwner = list(parceldf["Owner"])
+parcelAcre = list(parceldf["ACRES"])
+parcelLatitude = list(parceldf["LAT"])
+parcelLongitude = list(parceldf["LONG"])
+SUParcel = parceldf.loc[18178]
 
-# cityFile columns
-cityCategory = list(cityFile["Category"])
-cityAddress = list(cityFile["Address"])
-cityLatitude = list(cityFile["Lat"])
-cityLongitude = list(cityFile["Lng"])
+# citydf columns
+cityCategory = list(citydf["Category"])
+cityAddress = list(citydf["Address"])
+cityLatitude = list(citydf["Lat"])
+cityLongitude = list(citydf["Lng"])
 
 # custom columns
 parcelPropertyVal = [parcelTotalVal[i]-parcelLandVal[i] for i in range(len(parcelTotalVal))]
