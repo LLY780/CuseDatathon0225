@@ -1,6 +1,12 @@
 from data import*
 from Property import*
 
+def searchProp(addy):
+    for i in range(len(parcelTotalVal)):
+        if addy == properties[i].getAddress():
+            return properties[i]
+
+    return "this property doesn't exist"
 
 def getDistance(point1, point2):  # returns distance to SU
     # uses halvorsines formula
@@ -23,32 +29,31 @@ def propdensity():
 
 def propdensityrad(radius, prop): #radius in miles
     area = radius**2 * pi
-    for i in range(len)
+    count = 0
+    propcd = (prop.getObjLat(), prop.getObjLong())
+    for i in range(len(parcelTotalVal)):
+        if getDistance(propcd,(properties[i].getObjLat(),properties[i].getObjLong())) < radius:
+            count += 1
 
+    return count / area
 
-def medianLandValue():
+def medianValue(lst):
     middle = len(parcelTotalVal) // 2
     if len(parcelTotalVal) % 2 == 0:
-        return (parcelLandVal[middle]+parcelLandVal[middle+1])/2
+        return (lst[middle]+lst[middle+1])/2
     else:
-        return parcelLandVal[middle]
+        return lst[middle]
 
-def medianPropertyValue():
-    middle = len(parcelTotalVal) // 2
-    if len(parcelTotalVal) % 2 == 0:
-        return (parcelPropertyVal[middle]+parcelPropertyVal[middle+1])/2
-    else:
-        return parcelPropertyVal[middle]
-
-def medianTotalValue():
-    middle = len(parcelTotalVal) // 2
-    if len(parcelTotalVal) % 2 == 0:
-        return (parcelTotalVal[middle]+parcelTotalVal[middle+1])/2
-    else:
-        return parcelTotalVal[middle]
+def meanValue(lst):
+    sum = 0
+    for i in range(len(parcelTotalVal)):
+        sum += lst[i]
+    return round(sum / len(parcelTotalVal),2)
 
 
+# def standarddev(lst):
+#     topstuff = 
 
 
-
-#print(propdensity())
+print(propdensityrad(1.5,searchProp("940 COMSTOCK AVE & COLVIN ST")))
+print(propdensity())
