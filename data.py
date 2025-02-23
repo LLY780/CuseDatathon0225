@@ -1,9 +1,10 @@
 from imports import pd
-from imports import plt
 from Property import Property
 
-parcelFile = pd.read_csv("Syracuse_Parcel_Map_(Q4_2024).csv")
+parcelFile = pd.read_csv("Syracuse_Parcel_Map_(Q4_2024).csv") # filter out blank values
 cityFile = pd.read_csv("SYRCityline_Requests_(2021-Present).csv")
+
+parcelLength = len(parcelFile)
 
 # parcelFile columns
 parcelAddress = list(parcelFile["FullAddres"])
@@ -11,7 +12,7 @@ parcelAdditionalAddress = list(parcelFile["Add2_OwnSt"])
 parcelLandVal = list(parcelFile["land_av"])
 parcelTotalVal = list(parcelFile["total_av"])
 parcelOwner = list(parcelFile["Owner"])
-parcelCondition = list(parcelFile["IPS_Condit"])
+parcelAcre = list(parcelFile["SHAPE_Area"])
 parcelLatitude = list(parcelFile["LAT"])
 parcelLongitude = list(parcelFile["LONG"])
 SUParcel = parcelFile.iloc[18182]
