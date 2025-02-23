@@ -47,48 +47,52 @@ def proplstrad(radius, prop):
 
 
 def medianValue(lst):
-    middle = len(parcelTotalVal) // 2
-    if len(parcelTotalVal) % 2 == 0:
+    middle = len(lst) // 2
+    if len(lst) % 2 == 0:
         return (lst[middle]+lst[middle+1])/2
     else:
         return lst[middle]
-    
+
 def medianValuerad(radius,prop):
     ulst = proplstrad(radius, prop)
     middle = len(ulst) // 2
     if len(ulst) % 2 == 0:
-        return (ulst[middle] + ulst[middle + 1]) / 2
+        return (ulst[middle].getPropertyValue() + ulst[middle + 1].getPropertyValue()) / 2
     else:
         return ulst[middle]
 
 def meanValue(lst):
     psum = 0
-    for i in range(len(parcelTotalVal)):
+    for i in range(len(lst)):
         psum += lst[i]
-    return round(psum / len(parcelTotalVal),2)
+    return round(psum / len(lst),2)
 
 
 def meanValuerad(radius,prop):
     ulst = proplstrad(radius, prop)
     psum = 0
     for i in range(len(ulst)):
-        psum += ulst[i]
+        psum += ulst[i].getPropertyValue()
     return round(psum / len(ulst),2)
 
 def standarddev(lst):
     topstuff = 0
-    for i in range(len(parcelTotalVal)):
+    for i in range(len(lst)):
         topstuff += (lst[i] - meanValue(lst))**2
-    return sqrt(topstuff/len(parcelTotalVal))
+    return sqrt(topstuff/len(lst))
 
 def standarddevrad(radius, prop):
-    ulst = proplstrad(radius, prop)
+    plst = proplstrad(radius, prop)
+    ulst = []
+    for i in range(len(plst)):
+        ulst.append(plst[i].getPropertyValue())
     topstuff = 0
     for i in range(len(ulst)):
         topstuff += (ulst[i] - meanValue(ulst))**2
     return sqrt(topstuff/len(ulst))
 
 
-
-print(propdensityrad(1.5,searchProp("940 COMSTOCK AVE & COLVIN ST")))
-print(proplstrad(1.5,searchProp("940 COMSTOCK AVE & COLVIN ST")))
+#print(meanValue(proplstrad(1.5, searchProp("940 COMSTOCK AVE & COLVIN ST"))))
+print(meanValuerad(1.5,searchProp("940 COMSTOCK AVE & COLVIN ST")))
+#print(propdensityrad(1.5,searchProp("940 COMSTOCK AVE & COLVIN ST")))
+#print(proplstrad(1.5,searchProp("940 COMSTOCK AVE & COLVIN ST")))
