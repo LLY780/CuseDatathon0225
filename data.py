@@ -1,4 +1,5 @@
 from imports import pd
+from imports import plt
 from Property import Property
 
 parcelFile = pd.read_csv("Syracuse_Parcel_Map_(Q4_2024).csv")
@@ -25,4 +26,6 @@ cityLongitude = list(cityFile["Lng"])
 parcelPropertyVal = [parcelTotalVal[i]-parcelLandVal[i] for i in range(len(parcelTotalVal))]
 
 # list of all parcels using Property class
-properties = [Property(parcelAddress[i],parcelLandVal[i],parcelPropertyVal[i],parcelLatitude[i],parcelLongitude[i]) for i in range(len(parcelTotalVal))]
+properties = {}
+for i in range(len(parcelTotalVal)):
+    properties[parcelAddress[i]] = Property(parcelAddress[i],parcelLandVal[i],parcelPropertyVal[i],parcelLatitude[i],parcelLongitude[i])
