@@ -3,8 +3,7 @@ import matplotlib.colors as mcolors
 from math import sin, cos, atan2, sqrt, radians
 
 # Directory paths
-base_path = "C:/Users/sajid/CuseDatathon0225/CuseDatathon0225/"
-parcel_csv = base_path + "Syracuse_Parcel_Map_(Q4_2024).csv"
+parcel_csv = "Syracuse_Parcel_Map_(Q4_2024).csv"
 
 # Data preparation
 parcelFile = pd.read_csv(parcel_csv)
